@@ -1,0 +1,31 @@
+<form (submit)="onLogin($event)" class="form-signin">
+  <div *ngIf="error != ''" class="alert alert-danger">
+    {{error}}
+  </div>
+  <div class="form-group">
+    <input type="email" name="username" email [(ngModel)]="username" #usernameField="ngModel" [ngModelOptions]="{standalone: true}" required="required" autofocus class="form-control" placeholder="Email...">
+  </div>
+  <div class="form-group">
+    <input type="password" name="password" #passwordField="ngModel" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required="required" class="form-control" placeholder="Contraseña...">
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-large btn-default">Conectar</button>
+  </div>
+</form>
+
+<form (submit)="onLogin($event)" class="form-signin" #loginForm="ngForm">
+  <div *ngIf="error != ''" class="alert alert-danger">
+    {{error}}
+  </div>
+  <div class="group">
+    <md-input-container class="example-full-width">
+      <input type="email" mdInput placeholder="Email" value="">
+    </md-input-container>
+  </div>
+  <div class="group">
+    <md-input-container class="example-full-width">
+      <input type="password" mdInput placeholder="Contraseña" value="">
+    </md-input-container>
+  </div>
+  <button md-raised-button>Conectar</button>
+</form>
