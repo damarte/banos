@@ -1,0 +1,11 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null",
+    "news": {
+      "$new": {
+        ".validate": "newData.hasChildren(['title', 'content', 'image', 'created', 'modified', 'user']) && newData.child('title').isString() && newData.child('content').isString() && newData.child('created').isNumber() && newData.child('modified').isNumber()"
+      }
+    }
+  }
+}

@@ -18,6 +18,7 @@ import { AuthenticationService } from 'app/services/authentication.service';
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
+  { path: 'list/:entity', component: ListComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
  // { path: 'update-book/:id', component: UpdateBookComponent },
  // { path: '**', component: PageNotFoundComponent }
@@ -25,12 +26,14 @@ const routes: Routes = [
 
 import { environment } from 'environments/environment';
 import 'hammerjs';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

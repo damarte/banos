@@ -6,6 +6,7 @@ import { MdInputModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
 import { MdProgressSpinnerModule } from '@angular/material';
+import { MdProgressBarModule } from '@angular/material';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { MdProgressSpinnerModule } from '@angular/material';
     MdButtonModule,
     MdIconModule,
     MdProgressSpinnerModule,
+    MdProgressBarModule,
   ],
   exports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { MdProgressSpinnerModule } from '@angular/material';
     MdButtonModule,
     MdIconModule,
     MdProgressSpinnerModule,
+    MdProgressBarModule,
   ],
   declarations: []
 })
