@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  username = 'damarte86@gmail.com';
-  password = 'prueba';
-
   error = '';
 
-  constructor(public auth: AuthenticationService, public router: Router) { }
+  loginForm : FormGroup;
+
+  constructor(public auth: AuthenticationService, public router: Router, public fb: FormBuilder) {
+    this.loginForm = fb.group({
+      'username' : ['', Validators.required],
+      'password': ['', Validators.required],
+    })
+  }
 
   ngOnInit() {
     if (this.auth.loggedIn) {
@@ -24,19 +28,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLogin(event) {
-    event.preventDefault();
+  submitForm(data: any):void {
+    this.error = '';
 
-    this.auth.login(this.username, this.password).subscribe(
-      user => {
-        console.log(user);
-        this.router.navigate(['home']);
-      },
-      error => {
-        this.error = error.message;
-        console.log(error);
-      }
-    );
+    if (this.loginForm.valid) {
+      console.log(data);
+      this.auth.login(data.username, data.password).subscribe(
+        user => {
+          console.log(user);
+          this.router.navigate(['home']);
+        },
+        error => {
+          this.error = error.message;
+          console.log(error);
+        }
+      );
+    }
   }
-
 }
