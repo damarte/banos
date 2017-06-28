@@ -9,3 +9,9 @@
   background: #fafafa;
   border: 1px solid #ebebeb;
 }
+
+.login-spinner {
+  width: 30px;
+  height: 30px;
+  float: right;
+}

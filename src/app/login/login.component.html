@@ -14,5 +14,6 @@
       </md-input-container>
     </div>
     <button type="submit" [disabled]="!loginForm.valid" md-raised-button>Conectar</button>
+    <md-spinner *ngIf="submiting" class="login-spinner"></md-spinner>
   </form>
 </div>
