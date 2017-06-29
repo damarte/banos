@@ -15,6 +15,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { AuthenticationService } from 'app/services/authentication.service';
+import { FirebaseRulesService } from 'app/services/firebase-rules.service';
+
+import { HttpModule }      from '@angular/http';
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
@@ -39,6 +43,7 @@ import { ListComponent } from './list/list.component';
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpModule,
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
@@ -46,7 +51,8 @@ import { ListComponent } from './list/list.component';
     MaterialModule,
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    FirebaseRulesService
   ],
   bootstrap: [
     AppComponent

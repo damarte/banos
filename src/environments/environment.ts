@@ -12,5 +12,8 @@ export const environment = {
     projectId: 'banos-de-rio-tobia',
     storageBucket: '',
     messagingSenderId: ''
+  },
+  path: {
+    rules: 'rules.json'
   }
 };

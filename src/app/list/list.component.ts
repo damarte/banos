@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { FirebaseRulesService } from 'app/services/firebase-rules.service';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private rules: FirebaseRulesService,
   ) { }
 
   ngOnInit() {
