@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FirebaseRulesService } from 'app/services/firebase-rules.service';
+import { FirebaseModelService } from 'app/services/firebase-model.service';
 
 @Component({
   selector: 'app-list',
@@ -9,15 +9,34 @@ import { FirebaseRulesService } from 'app/services/firebase-rules.service';
 })
 export class ListComponent implements OnInit {
 
+  entity: string;
+  objects: any;
+  fields: string[];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private rules: FirebaseRulesService,
+    private model: FirebaseModelService,
   ) { }
 
   ngOnInit() {
-    const entity = this.route.snapshot.params['entity'];
-    console.log(entity);
+    this.entity = this.route.snapshot.params['entity'];
+    this.fields = this.model.fields(this.entity);
+    console.log(this.fields);
+    this.objects = this.model.read(this.entity);
+    /*const data = {
+      title: 'Prueba de noticia',
+      content: 'Prueba de noticia texto',
+      image: '',
+      created: 1498807325,
+      modified: 1498807325,
+      user: ''
+    }
+
+    this.model.create(this.entity, data);*/
+
   }
+
+
 
 }

@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,7 @@ export class AuthenticationService implements CanActivate {
   public loggedIn$: EventEmitter<firebase.User>;
   public loggedOut$: EventEmitter<{}>;
 
-  constructor(public af: AngularFireAuth) {
+  constructor(private af: AngularFireAuth, private router: Router) {
     this.loggedIn$ = new EventEmitter();
     this.loggedOut$ = new EventEmitter();
 
@@ -56,6 +56,9 @@ export class AuthenticationService implements CanActivate {
   }
 
   canActivate() {
+    if(!this.loggedIn()){
+      this.router.navigate(['/login']);
+    }
     return this.loggedIn();
   }
 }

@@ -34,13 +34,11 @@ export class LoginComponent implements OnInit {
 
 
     if (this.loginForm.valid) {
-      console.log(data);
       this.submiting = true;
 
       this.auth.login(data.username, data.password).subscribe(
         user => {
           this.submiting = false;
-          console.log(user);
           this.router.navigate(['home']);
         },
         error => {

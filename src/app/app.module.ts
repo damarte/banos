@@ -15,14 +15,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { AuthenticationService } from 'app/services/authentication.service';
-import { FirebaseRulesService } from 'app/services/firebase-rules.service';
+import { FirebaseModelService } from 'app/services/firebase-model.service';
 
-import { HttpModule }      from '@angular/http';
+import { HttpModule } from '@angular/http';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
-  { path: 'list/:entity', component: ListComponent},
+  { path: 'list/:entity', component: ListComponent, canActivate: [AuthenticationService] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
  // { path: 'update-book/:id', component: UpdateBookComponent },
  // { path: '**', component: PageNotFoundComponent }
@@ -52,7 +52,7 @@ import { ListComponent } from './list/list.component';
   ],
   providers: [
     AuthenticationService,
-    FirebaseRulesService
+    FirebaseModelService
   ],
   bootstrap: [
     AppComponent
